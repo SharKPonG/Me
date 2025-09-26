@@ -95,6 +95,7 @@ using namespace std;
 // Circular LinkedList
 
 #include <string>
+using std::string;
 class Song{
 public:
     string title;
@@ -134,32 +135,19 @@ public:
 
         while (temp != nullptr) {
             if (temp->title == title) {
-                // กรณีเป็นหัว
-                if (temp == head) {
-                    head = temp->next;                 // ขยับหัวไปขวา
-                    if (head != nullptr) head->prev = nullptr;
-                    if (temp == tail) tail = nullptr;  // เคสโหนดเดียว: head==tail==temp
-                }
-                // กรณีเป็นท้าย
-                else if (temp == tail) {
-                    tail = temp->prev;                 // ขยับท้ายไปซ้าย
-                    if (tail != nullptr) tail->next = nullptr;
-                }
-                // กรณีกลาง
-                else {
-                    temp->prev->next = temp->next;  
-                    temp->next->prev = temp->prev; 
-                }
-
-                delete temp;                           // ปิดหน่วยความจำ
-                return true;                           // ลบ “ตัวแรกที่เจอ”
+                if(temp->prev) temp->prev->next = temp->next;
+                if(temp->next) temp->next->prev = temp->prev;
+                if(temp == head) head = temp->next;
+                if(temp == tail) tail = temp->prev;
+            delete temp;
+            return true;
             }
-            temp = temp->next;                         // เดินต่อเมื่อยังไม่เจอ
+        temp = temp->next;
         }
-
-        return false;                                   // ไล่ครบแล้วไม่เจอ
+    return false;
     }
 };
+
 
 int main(){
     Playlist mySongs;
