@@ -92,71 +92,110 @@ using namespace std;
 //     printBackList(third); // 3, 2, 1
 // }
 
-// Circular LinkedList
+// // Circular LinkedList
 
-#include <string>
-using std::string;
-class Song{
-public:
-    string title;
-    Song *next;
-    Song *prev;
+// #include <string>
+// using std::string;
+// class Song{
+// public:
+//     string title;
+//     Song *next;
+//     Song *prev;
 
-    Song(string title){
-        this->title = title;
-        this->next = nullptr;
-        this->prev = nullptr;
+//     Song(string title){
+//         this->title = title;
+//         this->next = nullptr;
+//         this->prev = nullptr;
+//     }
+// };
+
+
+// class Playlist{
+// private:
+//     Song *head;
+//     Song *tail;
+
+// public: 
+//     Playlist() : head(nullptr), tail(nullptr){}
+
+//     void addSong(string title){
+//         Song *newSong = new Song(title);
+//         if (!head){
+//             head = newSong;
+//             tail = newSong;
+//         }else{
+//             tail->next = newSong; // เพลงถัดไป ชี้ newSong
+//             newSong->prev = tail;
+//             tail = newSong;
+//         }
+//     }
+
+//     bool removeSong(const string& title) {
+//         Song *temp = head;
+
+//         while (temp != nullptr) {
+//             if (temp->title == title) {
+//                 if(temp->prev) temp->prev->next = temp->next;
+//                 if(temp->next) temp->next->prev = temp->prev;
+//                 if(temp == head) head = temp->next;
+//                 if(temp == tail) tail = temp->prev;
+//             delete temp;
+//             return true;
+//             }
+//         temp = temp->next;
+//         }
+//     return false;
+//     }
+// };
+
+
+// int main(){
+//     Playlist mySongs;
+
+//     mySongs.addSong("BabyShark1");
+    
+//     mySongs.addSong("BabyShark2");
+//     mySongs.addSong("BabyShark3");
+//     mySongs.addSong("BabyShark4");
+
+//     mySongs.removeSong("BabyShark2");
+// }
+
+
+
+typedef struct Node{
+    int data;
+    Node* next;
+}Node;
+
+
+void LinkedListTraversal(Node *ptr){
+    while (ptr != nullptr){
+        cout << ptr << " " << endl;
+        ptr = ptr->next; 
     }
-};
-
-
-class Playlist{
-private:
-    Song *head;
-    Song *tail;
-
-public: 
-    Playlist() : head(nullptr), tail(nullptr){}
-
-    void addSong(string title){
-        Song *newSong = new Song(title);
-        if (!head){
-            head = newSong;
-            tail = newSong;
-        }else{
-            tail->next = newSong; // เพลงถัดไป ชี้ newSong
-            newSong->prev = tail;
-            tail = newSong;
-        }
-    }
-
-    bool removeSong(const string& title) {
-        Song *temp = head;
-
-        while (temp != nullptr) {
-            if (temp->title == title) {
-                if(temp->prev) temp->prev->next = temp->next;
-                if(temp->next) temp->next->prev = temp->prev;
-                if(temp == head) head = temp->next;
-                if(temp == tail) tail = temp->prev;
-            delete temp;
-            return true;
-            }
-        temp = temp->next;
-        }
-    return false;
-    }
-};
-
+}
 
 int main(){
-    Playlist mySongs;
+    Node* head;
+    Node* second;
+    Node* third;
 
-    mySongs.addSong("BabyShark1");
+    head = (Node*)malloc(sizeof(Node));
+    second = (Node*)malloc(sizeof(Node));
+    third = (Node*)malloc(sizeof(Node));
+
+
+    head->data = 10;
+    head->next = second;
     
-    mySongs.addSong("BabyShark2");
-    mySongs.addSong("BabyShark3");
-    mySongs.addSong("BabyShark4");
+    second->data = 14;
+    second->next = third;
 
-    mySongs.removeSong("BabyShark2");
+
+    third->data = 16;
+    third->next = nullptr;
+
+    LinkedListTraversal(head);
+    
 }
