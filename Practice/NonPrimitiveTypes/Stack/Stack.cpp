@@ -15,6 +15,14 @@ private:
 public: 
     Stack() {top = nullptr;}
 
+    void push(int x){
+        Node *newNode = new Node();
+        newNode->data = x;
+        newNode->next = top;
+        top = newNode;
+
+        cout << x << "Pushed in the Stack" << endl;
+    }
     int pop(){
         if (top == nullptr){
             cout << "Stack Overflow\n";
@@ -38,6 +46,17 @@ public:
         }
     }
 };
+
+int main(){
+    Stack s;
+
+    s.push(10);
+    s.push(20);
+
+    cout << s.peek() << endl;
+    cout << s.pop() << endl;
+    cout << s.peek() << endl;
+}
 
 
 
