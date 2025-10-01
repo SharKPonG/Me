@@ -44,7 +44,7 @@ int main(){
     Node* cs016     = new Node("cs016", 2);
     Node* grades016 = new Node("grades", 8);
     Node* homeworks = new Node("homeworks", 1);
-    Node* programs = new Node("program", 1);
+    Node* programs = new Node("programs", 1);
     
     homeworks->children.push_back(new Node("Hw1", 3));
     homeworks->children.push_back(new Node("Hw2", 2));
@@ -71,11 +71,11 @@ int main(){
 
     demos->children.push_back(new Node("market", 47866));
 
-    demos->children.push_back(project);
-    papers->children.push_back(project);
-
     cs252->children.push_back(new Node("grades", 3));
-    project->children.push_back(cs252);
+    cs252->children.push_back(project);
+    cs252->children.push_back(papers);
+    cs252->children.push_back(demos);
+
     root->children.push_back(cs252);
 
 
